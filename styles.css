@@ -276,89 +276,73 @@ a{color:inherit;text-decoration:none}
 
 /* Base card */
 /* --- Card container --- */
-/* ==== Project card (Idle -> Hover) ==== */
-.card {
+/* === Project card === */
+.card{
+  position: relative;                /* anchor for CTA overlay */
   background: var(--card-bg, #000002);
-  color:var(--Card-Text-Color,#F4EFE4);
-  border-radius:24px;
-  height:424px;                    /* <- matches your Figma cards */
-  padding:5% 16px 16px;
-  display:flex;
-  flex-direction:column;
-  gap:48px;                        /* Idle gap */
-  overflow:hidden;
-  transition:box-shadow .25s ease, gap .25s ease;
-  cursor:pointer;
-}
-
-.card:hover{
-  box-shadow:0 4px 8px #F25D00;    /* orange glow */
-  gap:8px;                         /* Hover gap */
-}
-
-/* head stays compact, body takes the flexible space */
-.card-head{
-  display:flex; flex-direction:column; align-items:center; gap:16px;
-}
-.card-title{ margin:0; font-size:32px; line-height:48px; font-weight:600; text-align:center; }
-.card-image{ border-radius:12px; display:block; }
-
-/* body fills the remainder of the fixed-height card */
-.card-body{
-  display:flex; flex-direction:column; gap:8px;
-  flex:1 1 auto;                   /* grow to use available space */
-  padding-bottom: 10%;        /* ≈ pill height (48–56) + 16px bottom gap */
-}
-
-/* chip should not stretch full width */
-.chip{
-  align-self:flex-start;
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:6px 12px;
-  border:1px solid currentColor; border-radius:999px;
-  font:700 10px/1 'Segoe UI', sans-serif;
-  width:auto;
-}
-
-/* Learn more: collapsed in-flow until hover (pill style) */
-.learn-more{
-  display: inline-flex;              /* pill */
-  align-items: center;
-  gap: .5rem;
-  border: 1px solid currentColor;
-  border-radius: 999px;              /* <- pill corners */
-  text-decoration: none;
-  color: inherit;
-  white-space: nowrap;               /* keep text on one line */
-  box-sizing: border-box;
-
-  /* hidden state (collapsed but inside the card) */
-  max-height: 0;                     /* animate height safely */
-  padding-top: 0;                    /* keep horizontal padding so width doesn't jump */
-  padding-bottom: 10%;
-  padding-left: 10%;
-  padding-right: 10%;
-  opacity: 0;
+  color: var(--Card-Text-Color, #F4EFE4);
+  border-radius: 24px;
+  min-height: 424px;                 /* base size from design */
+  height: auto;                      /* allow growth at wider screens */
+  padding: 5% 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;                         /* idle gap */
   overflow: hidden;
-  pointer-events: none;
-  transform: translateY(6px);        /* subtle slide-in */
-  transition:
-    max-height .25s ease,
-    padding-top .25s ease,
-    padding-bottom .25s ease,
-    opacity .2s ease,
-    transform .25s ease;
+  transition: box-shadow .25s ease, gap .25s ease;
+  cursor: pointer;
+}
+.card:hover{
+  box-shadow: 0 4px 8px #F25D00;     /* orange glow */
+  gap: 8px;                          /* tighter on hover */
 }
 
-/* reveal smoothly on hover */
-.card:hover .learn-more{
-  max-height: 64px;                  /* enough room for text + padding */
-  padding-top: 2.5%;                 /* vertical padding only expands on hover */
-  padding-bottom: 2.5%;
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
+/* Head / media */
+.card-head{ display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.card-title{ margin: 0; font-size: 32px; line-height: 48px; font-weight: 600; text-align: center; }
+.card-image{ display: block; border-radius: 12px; }
+
+/* Body (reserve space for CTA) */
+.card-body{
+  display: flex; flex-direction: column; gap: 8px;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding-bottom: 72px;              /* ≈ pill height + bottom gap */
 }
+
+/* Chip */
+.chip{
+  align-self: flex-start;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 6px 12px;
+  border: 1px solid currentColor; border-radius: 999px;
+  font: 700 10px/1 'Segoe UI', sans-serif;
+  width: auto;
+}
+
+/* CTA (overlayed; hidden until hover) */
+.learn-more{
+  position: absolute;
+  left: 16px; right: 16px; bottom: 16px;
+
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  white-space: nowrap; box-sizing: border-box;
+
+  border: 1px solid currentColor; border-radius: 999px;
+  text-decoration: none; color: inherit;
+  padding: 10px 16px;               /* fixed px padding = stable sizing */
+
+  opacity: 0;                        /* hidden */
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+}
+.card:hover .learn-more{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 
 /* === Default styles (applied to all cards) === */
 .card-title {
