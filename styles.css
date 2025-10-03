@@ -319,24 +319,46 @@ a{color:inherit;text-decoration:none}
   width:auto;
 }
 
-/* Learn more: hidden in flow until hover (pushes content up) */
+/* Learn more: collapsed in-flow until hover (pill style) */
 .learn-more{
-  border:1px solid currentColor; border-radius:8px;
-  text-decoration:none; color:inherit; text-align:left;
+  display: inline-flex;              /* pill */
+  align-items: center;
+  gap: .5rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;              /* <- pill corners */
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;               /* keep text on one line */
+  box-sizing: border-box;
 
-  /* hidden state */
-  height:0; padding:0; opacity:0;
-  overflow:hidden; pointer-events:none;
-  transition:height .25s ease, padding .25s ease, opacity .2s ease;
+  /* hidden state (collapsed but inside the card) */
+  max-height: 0;                     /* animate height safely */
+  padding-top: 0;                    /* keep horizontal padding so width doesn't jump */
+  padding-bottom: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(6px);        /* subtle slide-in */
+  transition:
+    max-height .25s ease,
+    padding-top .25s ease,
+    padding-bottom .25s ease,
+    opacity .2s ease,
+    transform .25s ease;
 }
 
 /* reveal smoothly on hover */
 .card:hover .learn-more{
-  height:44px;                     /* visible height */
-  padding:8px 16px;
-  opacity:1;
-  pointer-events:auto;
+  max-height: 64px;                  /* enough room for text + padding */
+  padding-top: 2.5%;                 /* vertical padding only expands on hover */
+  padding-bottom: 2.5%;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
+
 
 /* === Default styles (applied to all cards) === */
 .card-title {
