@@ -307,7 +307,7 @@ a{color:inherit;text-decoration:none}
 .card-body{
   display:flex; flex-direction:column; gap:8px;
   flex:1 1 auto;                   /* grow to use available space */
-  padding-bottom: 72px;        /* ≈ pill height (48–56) + 16px bottom gap */
+  padding-bottom: 10%;        /* ≈ pill height (48–56) + 16px bottom gap */
 }
 
 /* chip should not stretch full width */
@@ -359,9 +359,6 @@ a{color:inherit;text-decoration:none}
   pointer-events: auto;
   transform: translateY(0);
 }
-
-.card-body { padding-bottom: 5%; }  /* breathing room for the pill */
-
 
 /* === Default styles (applied to all cards) === */
 .card-title {
