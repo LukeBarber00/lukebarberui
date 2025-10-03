@@ -1,0 +1,767 @@
+/* ---------- RESET ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font:400 16px/1.6 'Segoe UI',system-ui,-apple-system,'Segoe UI Variable',Roboto,Arial,sans-serif}
+
+/* ---------- TOKENS (from your variables) ---------- */
+:root{
+  --Mode-Background:#F4EFE4;
+  --Main-Text-Color:#262626;
+  --Dash-Color:rgba(38,38,38,.25);
+  --Button-Color:#262626;
+  --Button-Text-Color:#F4EFE4;
+  --Menu-Color:#D1C2A6;
+
+  --Mode-Section-Header:rgba(242,93,0,.10);
+  --Mode-Section-Main:rgba(242,93,0,.05);
+
+  --Card-Text-Color:#F4EFE4;
+}
+:root[data-theme="dark"]{
+  --Mode-Background:#0F0F0F;
+  --Main-Text-Color:#F5F5F5;
+  --Dash-Color:rgba(255,255,255,.15);
+  --Button-Color:#EADD50;
+  --Button-Text-Color:#111;
+  --Menu-Color:#B5A484;
+  --Mode-Section-Header:rgba(242,93,0,.16);
+  --Mode-Section-Main:rgba(242,93,0,.08);
+}
+
+/* ===== THEME TOKENS ===== */
+:root {
+  /* Light (default) */
+  --Mode-Background: #F4EFE4;
+  --Main-Text-Color: #262626;
+  --Menu-Color: #D1C2A6;
+  --Dash-Color: rgba(38,38,38,0.25);
+  --Button-Color: #262626;
+  --Button-Text-Color: #F4EFE4;
+  --Card-Text-Color: #F4EFE4; /* text inside dark cards */
+}
+
+:root[data-theme="dark"] {
+  /* From your dark Figma */
+  --Mode-Background: #262626;
+  --Main-Text-Color: #F4EFE4;
+  --Menu-Color: #201B1C;
+  --Dash-Color: rgba(255,255,255,0.10);
+  --Button-Color: #F4EFE4;
+  --Button-Text-Color: #262626;
+  --Card-Text-Color: #F4EFE4;
+}
+
+/* Global usage */
+html, body {
+  background: var(--Mode-Background);
+  color: var(--Main-Text-Color);
+}
+
+/* ---------- GLOBAL ---------- */
+body{background:var(--Mode-Background);color:var(--Main-Text-Color)}
+a{color:inherit;text-decoration:none}
+.container{max-width:1440px;margin:0 auto;padding:0 32px}
+
+/* ---------- HEADER ---------- */
+.site-header{border-bottom:1px solid var(--Dash-Color);background:var(--Mode-Background)}
+.header-inner{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+
+/* Brand 136x33 with 59px offset */
+.brand{height:33px;display:flex;align-items:center}
+.brand-grid{
+  width:136px;height:33px;display:grid;grid-template-columns:59px auto;align-items:start;
+  font-size:25px;line-height:36px;font-weight:400;
+}
+
+/* Top nav */
+.nav{display:flex;align-items:center;gap:32px}
+.navlink{font-size:25px;line-height:36px;font-weight:400;transition:opacity .15s}
+.navlink:hover{opacity:.75}
+
+/* Base button reset */
+.mode-toggle{
+  position:relative;
+  width:48px; height:48px;
+  border-radius:12px;
+  padding:0; border:0;
+  background:transparent;
+  appearance:none; -webkit-appearance:none;   /* kill native button bg */
+  display:grid; place-items:center;
+  cursor:pointer;
+}
+
+/* background layers live behind the icon */
+.mode-toggle .mode-box{
+  position:absolute; inset:0;
+  border-radius:12px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* icons stay on top and use currentColor */
+.mode-toggle .icon{
+  width:22px; height:22px; display:block;
+  z-index:1;
+}
+
+/* show only the relevant glyph */
+:root[data-theme="light"] .mode-toggle .sun  { display:none; }
+:root[data-theme="dark"]  .mode-toggle .moon { display:none; }
+
+/* LIGHT theme (moon visible) */
+:root[data-theme="light"] .mode-toggle{
+  color: var(--Main-Text-Color, #262626);     /* dark glyph */
+  box-shadow:none;                            /* no outer glow in light */
+  background:transparent;
+}
+:root[data-theme="light"] .mode-toggle .mode-box::after{
+  content:"";
+  position:absolute;
+  left:6.5px; top:6.5px;
+  width:34.93px; height:35px;
+  border-radius:10px;
+  background:rgba(0,0,0,.30);                 /* the small dark square */
+}
+
+/* DARK theme (sun visible) */
+:root[data-theme="dark"] .mode-toggle{
+  color:#262626;                               /* dark glyph on light box */
+  box-shadow:0 2px 2px rgba(234,221,80,0.25);  /* outer shadow */
+}
+:root[data-theme="dark"] .mode-toggle .mode-box::after{
+  content:"";
+  position:absolute;
+  left:2.5px; top:2.5px;
+  width:43px; height:43px;
+  border-radius:10px;
+  background:var(--Button-Color, #F4EFE4);
+  box-shadow:0 2px 4px #EADD50;
+  outline:0.25px solid rgba(234,221,80,0.5);
+  outline-offset:-0.12px;
+}
+
+/* Optional feel */
+.mode-toggle:hover { filter:brightness(1.02); }
+.mode-toggle:active { transform:translateY(1px); }
+
+
+
+/* Show only the relevant icon */
+:root[data-theme="light"] .mode-toggle .sun  { display:none; }
+:root[data-theme="dark"]  .mode-toggle .moon { display:none; }
+
+
+/* ---------- HERO ---------- */
+.hero{display:flex;flex-direction:column;align-items:center;gap:24px;padding:32px 24px 64px}
+.hero-logo{display:block;margin:0 auto 0;max-width:min(300px,60vw);height:auto;filter:drop-shadow(0 4px 4px rgba(242,93,0,.25))}
+.hero-title{font-size:64px;font-weight:700;margin:8px 0 0}
+.hero-sub{font-size:25px;line-height:36px;max-width:960px;text-align:center}
+.btn-primary{
+  margin-top:8px;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:12px 24px;
+  border-radius:16px;background:var(--Button-Color);color:var(--Button-Text-Color);
+  box-shadow:0 1px 4px #F25D00;transition:opacity .15s, transform .06s ease
+}
+.btn-primary:hover{opacity:.92} .btn-primary:active{transform:translateY(1px)}
+
+/* ---------- Projects ribbon ---------- */
+.projects-ribbon{display:flex;justify-content:center;align-items:center;height:93px;background:var(--Mode-Section-Header);border-top-left-radius:10px;border-top-right-radius:10px}
+.projects-title{font-size:64px;font-weight:700;margin:0}
+
+/* ---------- Projects grid ---------- */
+.projects-grid{
+  background:var(--Mode-Section-Main);
+  display:flex;flex-wrap:wrap;align-content:flex-start;gap:112px;justify-content:center;
+  padding:104px 32px;border-bottom-left-radius:10px;border-bottom-right-radius:10px
+}
+.card{
+  width:328px;height:424px;background:var(--card-bg,#000);color:var(--Card-Text-Color);
+  border-radius:24px;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:48px;padding-top:40px
+}
+.card-head{display:flex;flex-direction:column;align-items:center;gap:16px;padding:8px 0;position:relative}
+.card-title{font-size:40px;line-height:60px;font-weight:700;color:var(--title-color,var(--Card-Text-Color));text-align:center}
+.card .card-title:first-child{font-size:48px} /* for InCity & Eco hero default */
+.card-image{border-radius:12px;display:block}
+.inset-shadow{box-shadow:inset 0 0 20px 4px #000}
+.relative{position:relative}
+.eco-dot{position:absolute;left:72px;top:22px;width:41px;height:41px;background:#775227;border-radius:9999px}
+.card-body{align-self:stretch;display:flex;flex-direction:column;gap:8px;padding:0 16px 12px}
+.chip{display:inline-flex;align-items:center;justify-content:center;padding:8px;border-radius:24px;outline:1px solid var(--Card-Text-Color);outline-offset:-1px;font-size:10px;font-weight:700}
+.card-desc{font-size:16px;line-height:24px;margin:0}
+
+/* ---------- Bottom menu bar (your block) ---------- */
+.bottom-menu{background:var(--Menu-Color);box-shadow:0 4px 4px rgba(38,38,38,.25)}
+.bottom-menu-inner{display:flex;flex-direction:column;align-items:center;gap:32px;padding:16px 0}
+.bottom-menu-row{width:100%}
+.bottom-nav{display:flex;align-items:center;gap:88px;justify-content:center;padding:16px 32px}
+.bottom-nav span{font-size:25px;line-height:36px}
+.divider{flex:1 1 0;align-self:stretch;border-left:2px solid var(--Dash-Color);transform:rotate(0)} /* visually same as your rotated outline */
+
+.toggle-block{
+  display:flex;justify-content:center;gap:32px;padding:16px 32px
+}
+.toggle-block button{width:48px;height:48px;border:0;background:transparent;box-shadow:0 4px 4px rgba(38,38,38,.25);border-radius:16px;display:flex;align-items:center;justify-content:center;gap:32px}
+.toggle-block .bm-moon::before{content:"";display:block;width:37.5px;height:38.5px;background:var(--Button-Color)}
+.toggle-block .bm-sun::before{content:"";display:block;width:40px;height:32px;background:var(--Button-Color)}
+
+/* ---------- Footer ---------- */
+.site-footer{border-top:1px solid var(--Dash-Color);padding:24px 0;background:var(--Mode-Background);text-align:center}
+
+/* ---------- Responsive niceties ---------- */
+@media (max-width: 1024px){
+  .projects-grid{gap:64px}
+}
+@media (max-width: 640px){
+  .header-inner{height:auto;gap:12px;padding:12px 0}
+  .nav{gap:16px}
+  .projects-title{font-size:48px}
+  .hero-title{font-size:48px}
+}
+
+.site-footer {
+  width: 100%;
+  background: var(--Menu-Color, #D1C2A6);
+  box-shadow: 0 4px 4px rgba(38, 38, 38, 0.25);
+  display: flex;
+  justify-content: center;
+  padding: 16px 32px;
+}
+
+.site-footer {
+  width: 100%;
+  background: var(--Menu-Color, #D1C2A6);
+  box-shadow: 0 4px 4px rgba(38, 38, 38, 0.25);
+  padding: 24px 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-inner {
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Nav links */
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 112px; /* increase spacing here */
+  font-size: 25px;
+  font-family: Segoe UI, sans-serif;
+  color: var(--Main-Text-Color, #262626);
+}
+
+/* Divider styling */
+.footer-nav .divider {
+  width: 2px;
+  height: 100%;
+  background: var(--Dash-Color, rgba(38, 38, 38, 0.25));
+  transform: rotate(0deg); /* vertical line */
+}
+
+/* Social icons */
+.footer-icons {
+  display: flex;
+  flex-direction: row; /* make them line up */
+  gap: 24px;
+}
+
+.footer-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Base card */
+/* --- Card container --- */
+/* ==== Project card (Idle -> Hover) ==== */
+.card {
+  background: var(--card-bg, #000002);
+  color:var(--Card-Text-Color,#F4EFE4);
+  border-radius:24px;
+  height:424px;                    /* <- matches your Figma cards */
+  padding:5% 16px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:48px;                        /* Idle gap */
+  overflow:hidden;
+  transition:box-shadow .25s ease, gap .25s ease;
+  cursor:pointer;
+}
+
+.card:hover{
+  box-shadow:0 4px 8px #F25D00;    /* orange glow */
+  gap:8px;                         /* Hover gap */
+}
+
+/* head stays compact, body takes the flexible space */
+.card-head{
+  display:flex; flex-direction:column; align-items:center; gap:16px;
+}
+.card-title{ margin:0; font-size:32px; line-height:48px; font-weight:600; text-align:center; }
+.card-image{ border-radius:12px; display:block; }
+
+/* body fills the remainder of the fixed-height card */
+.card-body{
+  display:flex; flex-direction:column; gap:8px;
+  flex:1 1 auto;                   /* grow to use available space */
+}
+
+/* chip should not stretch full width */
+.chip{
+  align-self:flex-start;
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:6px 12px;
+  border:1px solid currentColor; border-radius:999px;
+  font:700 10px/1 'Segoe UI', sans-serif;
+  width:auto;
+}
+
+/* Learn more: hidden in flow until hover (pushes content up) */
+.learn-more{
+  border:1px solid currentColor; border-radius:8px;
+  text-decoration:none; color:inherit; text-align:left;
+
+  /* hidden state */
+  height:0; padding:0; opacity:0;
+  overflow:hidden; pointer-events:none;
+  transition:height .25s ease, padding .25s ease, opacity .2s ease;
+}
+
+/* reveal smoothly on hover */
+.card:hover .learn-more{
+  height:44px;                     /* visible height */
+  padding:8px 16px;
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* === Default styles (applied to all cards) === */
+.card-title {
+  color: var(--Card-Text-Color, #F4EFE4);
+  font-size: 32px;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 500;
+  line-height: 1.3;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.chip {
+  color: var(--Card-Text-Color, #F4EFE4);
+  font-size: 10px;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.card-desc {
+  color: var(--Card-Text-Color, #F4EFE4);
+  font-size: 16px;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+/* === Card variants === */
+
+/* InCity */
+.card--incity .card-title {
+  font-size: 40px;
+  font-family: "Eudoxus Sans", sans-serif;
+  font-weight: 500;
+  line-height: 60px;
+  color: var(--Card-Text-Color, #F4EFE4);
+}
+
+/* Product Page */
+.card--product .card-title {
+  font-size: 40px;
+  font-family: "Eudoxus Sans", sans-serif;
+  font-weight: 500;
+  line-height: 60px;
+  color: var(--Card-Text-Color, #F4EFE4);
+}
+
+/* Card variants */
+.card--incity,
+.card--product { --card-bg:#000002; }
+
+
+/* Eco Hero */
+.card--eco .card-title {
+  font-size: 40px;
+  font-family: "Eudoxus Sans", sans-serif;
+  font-weight: 500;
+  line-height: 60px;
+  color: var(--Card-Text-Color, #F4EFE4);
+}
+
+.card--eco {
+  --card-bg: #041C1B;
+}
+
+/* Foco Fresh */
+.card--foco .card-title {
+  font-size: 32px;
+  font-family: "Eudoxus Sans", sans-serif;
+  font-weight: 500;
+  line-height: 60px;
+  color: var(--Card-Text-Color, #F4EFE4);
+}
+
+.card--foco {
+  --card-bg: #0B792F;
+}
+
+/* T3 Engineering */
+.card--t3 .card-title {
+  font-size: 32px;
+  font-family: "Eudoxus Sans", sans-serif;
+  font-weight: 500;
+  line-height: 48px;
+  color: var(--Card-Text-Color, #F4EFE4);
+}
+
+.card--t3 {
+  --card-bg: #55617C;
+}
+
+/* === Page scaffolding for case-study pages === */
+.page { background: var(--Mode-Background, #F4EFE4); }
+
+/* Light / Dark background tokens */
+:root[data-theme="light"]{
+  --Mode-Background:#F4EFE4;
+  --Mode-Section-Header:rgba(242,93,0,0.10);
+  --Mode-Section-Main:rgba(242,93,0,0.05);
+  --Content-Box-Color:#F8F4EC;
+  --Box-Color:rgba(189,196,198,0.08);
+  --Dash-Color:rgba(38,38,38,0.25);
+  --Button-Color:#262626;
+  --Button-Text-Color:#F4EFE4;
+}
+
+:root[data-theme="dark"]{
+  --Mode-Background:#262626;
+  --Mode-Section-Header:rgba(255,255,255,0.10);
+  --Mode-Section-Main:rgba(255,255,255,0.05);
+  --Content-Box-Color:#201B1C;
+  --Box-Color:rgba(189,196,198,0.08);
+  --Dash-Color:rgba(255,255,255,0.10);
+  --Button-Color:#F4EFE4;
+  --Button-Text-Color:#262626;
+}
+
+/* Container */
+.container{ max-width:1440px; margin-inline:auto; padding-inline:32px; }
+
+/* ===== Hero ===== */
+.hero-case{ position:relative; margin-top:32px; }
+.hero-case .hero-img{
+  width:100%; height:auto; display:block; background:#000;
+  aspect-ratio: 1440 / 540; object-fit:cover;
+}
+.hero-case .hero-bar{
+  position:relative;
+  background: var(--Button-Color);
+  color: var(--Button-Text-Color);
+  display:flex; align-items:center; gap:16px;
+  padding:16px;
+}
+.hero-title{
+  font:700 48px/1.1 "Segoe UI", sans-serif;
+}
+@media (min-width:900px){
+  .hero-title{ font-size:96px; }
+}
+
+/* breadcrumb */
+.crumb{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--Card-Text-Color,#F4EFE4); text-decoration:none;
+  font:400 25px/36px "Segoe UI",sans-serif;
+}
+.crumb-icon{
+  width:36px; height:36px; border-radius:6px;
+  background: currentColor; mask:
+    radial-gradient(closest-side, transparent 7px, #000 8px) left 12px center/100% 100% no-repeat;
+  /* simple block; replace with your chevron if desired */
+}
+
+/* ===== Meta cards ===== */
+.meta { margin-block:104px; }
+.meta-grid{
+  display:grid; gap:40px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+.meta-card{
+  background: var(--Box-Color);
+  box-shadow: 0 4px 4px rgba(0,0,0,.25);
+  border-radius:8px; outline:2px solid var(--Dash-Color);
+  padding-bottom:8px; text-align:left;
+}
+.meta-card > header{
+  background: var(--Button-Color);
+  color: var(--Button-Text-Color);
+  border-radius:8px 8px 0 0;
+  padding:8px; font:400 25px/36px "Segoe UI",sans-serif;
+}
+.meta-card p{
+  margin:0; padding:8px; font:400 25px/36px "Segoe UI",sans-serif;
+  color: var(--Main-Text-Color,#262626);
+}
+.meta-card hr{
+  margin:8px; border:0; height:1px; outline:1px solid var(--Dash-Color); outline-offset:-.5px;
+}
+
+/* ===== Sections ===== */
+.section{ margin-block:56px; box-shadow:0 2px 4px rgba(38,38,38,.25); border-radius:16px; overflow:hidden; }
+.section-head{ display:grid; place-items:center; height:93px; background:var(--Mode-Section-Header); }
+.section-head h2{ margin:0; font:700 48px/1 "Segoe UI",sans-serif; }
+@media (min-width:900px){ .section-head h2{ font-size:64px; } }
+.section-head--border{ background:none; border-bottom:1px solid var(--Dash-Color); }
+
+.section-body{ padding:32px; background:var(--Mode-Section-Main); }
+.section--nofill .section-body{ background:var(--Content-Box-Color); }
+.section--boxed { background: var(--Box-Color); }
+.section--boxed .section-body{ background:transparent; }
+
+/* Figures / buttons */
+.figure-narrow, .figure-wide{ display:grid; gap:16px; justify-items:center; }
+.figure-narrow img{ max-width:346px; border-radius:12px; }
+.figure-wide img{ width:100%; border-radius:16px; }
+
+.btn{
+  display:inline-block; padding:8px 16px; border-radius:4px;
+  text-decoration:none; font:400 25px/36px "Segoe UI",sans-serif;
+  box-shadow:0 2px 4px rgba(0,0,0,.25);
+}
+.btn--dark{ background:var(--Button-Color); color:var(--Button-Text-Color); }
+
+/* Pills */
+.pill-row{ display:flex; gap:56px; flex-wrap:wrap; align-items:center; }
+.pill{
+  display:flex; align-items:center; gap:16px;
+  font:400 25px/36px "Segoe UI",sans-serif;
+  color:var(--Main-Text-Color,#262626);
+}
+.pill .dot{ width:12px; height:12px; border-radius:999px; background: currentColor; opacity:.4; }
+
+.crumb-back {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 14px;
+  font-family: Segoe UI, sans-serif;
+  font-weight: 500;
+  color: var(--Card-Text-Color, #f4efe4); /* matches hero-bar text */
+  background-color: rgba(0,0,0,0.4); /* subtle box */
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.crumb-back:hover {
+  background-color: rgba(0,0,0,0.6);
+  text-decoration: none;
+  opacity: 1;
+}
+
+.hero-bar {
+  display: flex;
+  justify-content: space-between; /* keeps back on left, title centered */
+  align-items: center;
+  position: relative;
+}
+
+.hero-title {
+  flex: 1;
+  text-align: center;
+  margin: 0; /* strip default spacing */
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: start; /* instead of stretch */
+}
+
+.meta-card {
+  background: var(--Mode-Section-Main, #f8f4ec);
+  padding: 2%;
+  border-radius: 12px;
+  box-shadow: 0px 2px 4px rgba(38, 38, 38, 0.25);
+  height: auto;       /* let it shrink to fit */
+}
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 280px 1fr;         /* portrait column */
+  gap: 32px;
+  align-items: start;
+}
+
+.about-portrait {
+  display: block;
+  max-width: 100%;  /* never overflow column */
+  height: auto;     /* keep aspect ratio */
+  border-radius: 12px;
+  outline: 6px var(--Mode-Orange-Border, rgba(242,93,0,.25)) solid;
+  box-shadow: 0 2px 4px #F25D00;
+}
+
+.about-frame {
+  margin: 0 auto;   /* centers the figure within its grid cell */
+}
+
+
+/* ===== Eco Hero Gallery ===== */
+
+/* Root container */
+.gallery { margin: 0 auto; }
+
+/* Section heading */
+.gallery-heading{
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: var(--Main-Text-Color,#262626);
+  text-align: center;
+}
+
+/* Row with arrows + viewport */
+.gallery-row{
+  display: grid;
+  grid-template-columns: 64px 1fr 64px;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Arrow buttons */
+/* Base button style */
+.gallery-nav {
+  width: 64px;
+  height: 64px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--Mode-Section-Header, rgba(242,93,0,.10));
+  box-shadow: 0 2px 4px rgba(38,38,38,.25);
+  cursor: pointer;
+  position: relative;
+}
+
+/* Left (prev) arrow */
+.gallery-nav.prev::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 12px; height: 12px;
+  border-top: 3px solid var(--Button-Color, #262626);
+  border-left: 3px solid var(--Button-Color, #262626);
+  transform: translate(-40%, -50%) rotate(-45deg);
+}
+
+/* Right (next) arrow */
+.gallery-nav.next::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 12px; height: 12px;
+  border-top: 3px solid var(--Button-Color, #262626);
+  border-right: 3px solid var(--Button-Color, #262626);
+  transform: translate(-60%, -50%) rotate(45deg);
+}
+
+/* Hover — same as project card hover */
+.gallery-nav:hover {
+  box-shadow: 0 4px 8px #F25D00;  /* orange glow */
+  transform: scale(1.05);         /* subtle pop */
+}
+
+.gallery-nav:focus-visible {
+  outline: 3px solid rgba(242,93,0,.35);
+  outline-offset: 2px;
+}
+
+/* Fixed height for this gallery */
+#eco-gallery { --gallery-height: 520px; }
+
+/* Viewport is fixed-height */
+.gallery-viewport{
+  height: var(--gallery-height);
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+/* Use FLEX for the track – simpler and reliable */
+.gallery-track{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;             /* was grid */
+  height: 100%;
+  transition: transform 280ms ease;
+}
+
+/* Each slide is exactly viewport width */
+.gallery-slide{
+  flex: 0 0 100%;
+  height: 100%;
+  min-height: 0;             /* allow children to shrink */
+  display: flex;
+  flex-direction: column;
+  background: var(--Content-Box-Color, #F8F4EC);
+  border: 1px solid var(--Dash-Color, rgba(38,38,38,.25));
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(38,38,38,.25);
+}
+
+/* Title bar takes only its content height */
+.slide-head{
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  background: var(--Mode-Section-Header, rgba(242,93,0,.10));
+  text-align: center;
+}
+
+/* Image fills remaining space and fits inside it */
+.gallery-slide img{
+  flex: 1 1 auto;            /* take leftover height under header */
+  min-height: 0;             /* important in flex containers */
+  width: 100%;
+  height: 100%;              /* fill the remaining space */
+  object-fit: contain;       /* scale to fit without cropping */
+  background: rgba(0,0,0,.05);
+  display: block;
+  padding: 2%;               /* small padding inside the box */
+}
+
+
+/* Dots */
+.gallery-dots{
+  display: flex; gap: 10px; justify-content: center; padding-top: 12px;
+}
+.gallery-dots button{
+  width:12px; height:12px; border-radius:50%;
+  border:1px solid var(--Button-Color,#262626);
+  background: transparent; box-shadow: 0 2px 4px rgba(38,38,38,.25);
+  cursor: pointer;
+}
+.gallery-dots button[aria-selected="true"]{ background: var(--Button-Color,#262626); }
+
+/* Responsive */
+@media (max-width:900px){
+  .gallery-row{ grid-template-columns: 48px 1fr 48px; gap: 12px; }
+  .gallery-nav{ width: 48px; height: 48px; }
+}
+
+/* Make smooth behavior the default (modern browsers) */
+html { scroll-behavior: smooth; }
+
+/* Ensure anchors aren't hidden under a fixed header */
+#projects { scroll-margin-top: 80px; } /* adjust to your header height */

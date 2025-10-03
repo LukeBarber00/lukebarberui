@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — Luke Barber</title>
+
+  <!-- root-relative paths -->
+  <link rel="icon" href="/assets/lb-logo.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/lb-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/lb-192.png">
+  <link rel="stylesheet" href="/styles.css" />
+  <script defer src="/theme.js"></script>
+</head>
+
+<body>
+  
+  <!-- Global header (kept consistent) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="Luke Barber — Home">
+        <span class="brand-grid"><span>Luke</span><span>Barber</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="navlink" href="/#projects">Projects</a>
+        <a class="navlink is-active" aria-current="page" href="/about.html">About</a>
+        <a class="navlink" href="/contact.html">Contact</a>
+      </nav>
+
+      <button class="mode-toggle" aria-label="Toggle theme">
+        <span class="mode-box" aria-hidden="true"></span>
+        <img class="icon sun"  src="/assets/IconSun.png"  alt="">
+        <img class="icon moon" src="/assets/IconMoon.png" alt="">
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page intro -->
+    <section class="section container" style="padding-top: 32px;">
+      <div class="about-intro" style="display:grid; grid-template-columns: 280px 1fr; gap: 32px; align-items:start;">
+        <figure class="about-frame">
+  <img src="../assets/about-portrait.jpg" alt="Portrait of Luke Barber" class="about-portrait">
+</figure>
+
+        <article class="content-box content-box--filled" style="border-radius:16px;">
+          <header class="section-head"><h1>About Me</h1></header>
+          <div class="section-body">
+            <p class="lead" style="font-size:1.25rem; line-height:1.6;">
+              I design efficient, human‑centered systems that help people and organizations save time, avoid mistakes, and make confident decisions. My approach blends systems thinking with practical design execution, always grounded in measurable outcomes.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills & Strengths -->
+    <section class="section container section--nofill" aria-labelledby="skills-title">
+      <div class="section-head section-head--border"><h2 id="skills-title">Skills &amp; Strengths</h2></div>
+      <div class="section-body">
+        <p>
+          Workflow Design · Dashboard &amp; Data UX · Information Architecture · Usability Testing · Prototyping · Design Systems · Figma (components &amp; variables) · Rive (micro‑interactions) · Webflow / Figma Sites · HTML/CSS Basics
+        </p>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section container section--nofill" aria-labelledby="exp-title">
+      <div class="section-head section-head--border"><h2 id="exp-title">Experience</h2></div>
+      <div class="section-body">
+        <p>
+          <strong>Kennesaw State University — Interactive Design (B.S.)</strong><br>
+          Completed advanced coursework in UI Design II, Visual Design II, Motion Graphics, Prototyping, Information Design, and Ethnography for Designers.
+        </p>
+
+        <h3 style="margin-top:24px">Design Projects</h3>
+        <ul class="bullet-list">
+          <li><strong>InCity</strong> — Municipal UX exploration focused on accessibility, reporting, and wayfinding.</li>
+          <li><strong>Eco Hero</strong> — Recycling education app built under a compressed summer timeline featuring an item scanner + local rules.</li>
+          <li><strong>RTX 50‑Series Compare</strong> — GPU comparison site designed with cognitive‑load principles for clear decisions.</li>
+          <li><strong>Foco Fresh</strong> — Brand system for a farm‑to‑table subscription service spanning packaging, logistics, and marketing.</li>
+          <li><strong>T3 Engineering</strong> — Scalable brand identity for clear, professional recognition.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/#projects">Projects</a><span class="divider"></span>
+        <a aria-current="page" href="/about.html">About</a><span class="divider"></span>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <div class="footer-icons">
+        <a href="mailto:your@email.com" class="footer-btn"><img src="../assets/IconMail.svg" alt="Email" width="24" height="24"></a>
+        <a href="https://www.linkedin.com/in/your-handle" class="footer-btn" target="_blank" rel="noreferrer"><img src="../assets/IconLinkedIn.svg" alt="LinkedIn" width="24" height="24"></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Small, page‑local tweaks to match the Figma vibe without the case‑study template -->
+  <style>
+    .bullet-list { list-style: disc; padding-left: 1.25rem; }
+    .content-box.content-box--filled { background: var(--Content-Box-Color, #F8F4EC); box-shadow: 0 2px 4px rgba(38,38,38,.25); padding: 16px 16px 8px; }
+    @media (max-width: 900px){
+      .about-intro { grid-template-columns: 1fr; }
+    }
+  </style>
+</body>
+</html>

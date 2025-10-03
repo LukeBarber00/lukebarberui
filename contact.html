@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Luke Barber</title>
+  <link rel="icon" href="../assets/lb-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css" />
+  <script defer src="../theme.js"></script>
+</head>
+<body>
+
+  <!-- Global header (consistent with site) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="Luke Barber — Home">
+        <span class="brand-grid"><span>Luke</span><span>Barber</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="navlink" href="/#projects">Projects</a>
+        <a class="navlink" href="/about.html">About</a>
+        <a class="navlink is-active" aria-current="page" href="/contact.html">Contact</a>
+      </nav>
+
+      <button class="mode-toggle" aria-label="Toggle theme">
+        <span class="mode-box" aria-hidden="true"></span>
+        <img class="icon sun"  src="/assets/IconSun.png"  alt="">
+        <img class="icon moon" src="/assets/IconMoon.png" alt="">
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Intro -->
+    <section class="section container" style="padding-top:32px;">
+      <article class="content-box content-box--filled" style="border-radius:16px;">
+        <header class="section-head"><h1>Let’s Connect</h1></header>
+        <div class="section-body">
+          <p class="lead" style="font-size:1.25rem; line-height:1.6;">
+            I’m always open to opportunities where design can make systems more efficient, usable, and impactful.
+            Whether you’re working on internal tools, dashboards, or complex workflows, I’d love to hear from you.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Contact form (semantic + accessible; rounded inputs to match Figma) -->
+    <section class="section container section--nofill">
+      <form id="contact-form" class="contact-form" action="https://formspree.io/f/your_form_id" method="POST">
+        <!-- Replace action with your provider (Formspree/Netlify/etc). For Netlify, add: data-netlify="true" name="contact" -->
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="firstName">First Name</label>
+            <input id="firstName" name="firstName" type="text" autocomplete="given-name" placeholder="First Name" required>
+          </div>
+          <div class="form-field">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Last Name" required>
+          </div>
+          <div class="form-field form-span-2">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Email" required>
+          </div>
+          <div class="form-field form-span-2">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Message" required></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn--dark">Send Message</button>
+          <a class="btn" href="mailto:your@email.com?subject=Portfolio%20Inquiry" aria-label="Email Luke">Email instead</a>
+          <a class="btn" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+
+        <p id="form-status" role="status" class="form-status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/#projects">Projects</a><span class="divider"></span>
+        <a href="/about.html">About</a><span class="divider"></span>
+        <a aria-current="page" href="/contact.html">Contact</a>
+      </nav>
+      <div class="footer-icons">
+        <a href="mailto:your@email.com" class="footer-btn"><img src="../assets/IconMail.svg" alt="Email" width="24" height="24"></a>
+        <a href="https://www.linkedin.com/in/your-handle" class="footer-btn" target="_blank" rel="noreferrer"><img src="../assets/IconLinkedIn.svg" alt="LinkedIn" width="24" height="24"></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Page-local styles to mirror the Figma look without inline soup -->
+  <style>
+    .contact-form { box-shadow: 0 2px 4px rgba(38,38,38,.25); border-radius:16px; padding:24px; background: var(--Content-Box-Color, #F8F4EC); border: 1px solid var(--Dash-Color, rgba(38,38,38,.25)); }
+    .form-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .form-field { display:flex; flex-direction:column; gap: 8px; }
+    .form-span-2 { grid-column: span 2; }
+    .form-field label { font-size: 25px; line-height: 36px; color: var(--Main-Text-Color,#262626); }
+    .form-field input, .form-field textarea {
+      border-radius: 36px; border: 2px solid var(--Button-Color,#262626); background: #fff; color: #262626;
+      padding: 16px 24px; font-size: 20px; line-height: 28px;
+    }
+    .form-field textarea { border-radius: 24px; resize: vertical; }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: var(--Dash-Color, rgba(38,38,38,.25)); }
+    .form-field input:focus, .form-field textarea:focus { outline: 3px solid rgba(242,93,0,.25); outline-offset: 2px; }
+    .form-actions { display:flex; flex-wrap:wrap; gap: 12px; margin-top: 16px; }
+    .form-status { margin-top: 12px; min-height: 1.25rem; font-size: .95rem; }
+    @media (max-width: 900px){ .form-grid { grid-template-columns: 1fr; } .form-span-2 { grid-column: span 1; } }
+  </style>
+
+  <!-- Optional: lightweight JS to show a friendly status after submit when using Formspree -->
+  <script>
+    (function(){
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('form-status');
+      if(!form) return;
+      form.addEventListener('submit', async (e)=>{
+        // If action still has placeholder, let the browser do default navigation
+        const action = form.getAttribute('action')||'';
+        if(action.includes('your_form_id')) return; 
+        e.preventDefault();
+        try{
+          const data = new FormData(form);
+          const res = await fetch(action, { method: form.method || 'POST', body: data, headers: { 'Accept':'application/json' } });
+          if(res.ok){ status.textContent = 'Thanks! Your message has been sent.'; form.reset(); }
+          else { status.textContent = 'Hmm, something went wrong. You can also email me directly.'; }
+        }catch(err){ status.textContent = 'Network error. Please try again or use the Email button.'; }
+      });
+    })();
+  </script>
+
+</body>
+</html>

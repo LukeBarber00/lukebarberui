@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Luke Barber — Portfolio</title>
+  <link rel="icon" href="assets/lb-logo.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/lb-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/lb-192.png">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="theme.js"></script>
+</head>
+<body>
+  <!-- ===== Header (1:1) ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="Luke Barber — Home">
+        <!-- 59px | auto grid exactly matches your absolute layout -->
+        <span class="brand-grid"><span>Luke</span><span>Barber</span></span>
+      </a>
+
+      <nav class="nav">
+        <a class="navlink" href="#projects">Projects</a>
+        <a class="navlink" href="/about.html">About</a>
+        <a class="navlink" href="/contact.html">Contact</a>
+      </nav>
+
+      <div class="mode-toggle" aria-label="Color mode">
+  <button class="mode-toggle" aria-label="Toggle theme">
+    <!-- theme background box drawn by CSS -->
+    <span class="mode-box" aria-hidden="true"></span>
+
+    <!-- flat, crisp icons; color follows currentColor -->
+    <img src="assets/IconSun.png"  class="icon sun"  alt="">
+    <img src="assets/IconMoon.png" class="icon moon" alt="">
+  </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Page wrapper ===== -->
+  <div class="page" style="padding-top:32px">
+
+    <!-- ===== HERO (1:1) ===== -->
+    <section class="hero">
+  <img src="./assets/lb-logo.svg" alt="LB monogram logo" class="hero-logo" width="300" height="300" />
+  <h1 class="hero-title">Hi, I’m Luke</h1>
+  <p class="hero-sub">I design systems that work faster, smarter, and better for business.</p>
+  <a href="#projects" class="btn-primary">View my projects</a>
+</section>
+
+
+    <!-- ===== Projects header ribbon ===== -->
+    <section class="projects-ribbon">
+      <h2 class="projects-title">Projects</h2>
+    </section>
+
+    <!-- ===== Projects grid (cards 1:1) ===== -->
+    <section id="projects" class="projects-grid container">
+      
+<!-- InCity -->
+<article class="card card--incity">
+  <div class="card-head">
+    <h3 class="card-title">InCity</h3>
+    <img class="card-image incity" src="./assets/incity-hero.png" alt="InCity case study cover" width="90%" height="100%">
+  </div>
+
+  <div class="card-body">
+    <span class="chip">Product Design</span>
+    <p class="card-desc">Reimagining Atlanta’s 311 for speed, clarity, and accessibility</p>
+    <a class="learn-more" href="/projects/incity.html">Learn more</a>
+  </div>
+</article>
+
+<!-- Product Page -->
+<article class="card card--product">
+  <div class="card-head">
+    <h3 class="card-title">NVIDIA</h3>
+    <img class="card-image" src="./assets/rtx5070.jpg" alt="RTX 5070 promo image" width="95%" height="100%">
+  </div>
+
+  <div class="card-body">
+    <span class="chip">User Interface Design</span>
+    <p class="card-desc">Optimized GPU product page for speed and clarity.</p>
+    <a class="learn-more" href="/projects/product-page.html">Learn more</a>
+  </div>
+</article>
+
+<!-- Eco Hero -->
+<article class="card card--eco">
+  <div class="card-head">
+    <h3 class="card-title">Eco Hero</h3>
+    <img class="card-image" src="./assets/eco-thumbnail.png" alt="Eco Hero case study cover" width="75%" height="100%">
+  </div>
+
+  <div class="card-body">
+    <span class="chip">User Interface Design</span>
+    <p class="card-desc">Recycling app to make sustainable choices faster and clearer.</p>
+    <a class="learn-more" href="/projects/eco-hero.html">Learn more</a>
+  </div>
+</article>
+
+
+<!-- Foco Fresh -->
+<article class="card card--foco">
+  <div class="card-head">
+    <h3 class="card-title">Foco Fresh</h3>
+    <img class="card-image foco" src="./assets/foco-basket.png" alt="Foco Fresh basket mark" width="70%" height="100%">
+  </div>
+
+  <div class="card-body">
+    <span class="chip">Visual Design</span>
+    <p class="card-desc">A Farm-to-Table subscription box for Forsyth County, GA</p>
+    <a class="learn-more" href="/projects/foco-fresh.html">Learn more</a>
+  </div>
+</article>
+
+
+<!-- T3 Engineering -->
+<article class="card card--t3">
+  <div class="card-head">
+    <h3 class="card-title">T3 Engineering</h3>
+    <img class="card-image t3" src="./assets/t3-logo.svg" alt="T3 Engineering logo" width="75%" height="100%">
+  </div>
+
+  <div class="card-body">
+    <span class="chip">Visual Design</span>
+    <p class="card-desc">Scalable brand identity for clear, professional recognition.</p>
+    <a class="learn-more" href="/projects/t3-engineering.html">Learn more</a>
+  </div>
+</article>
+    </section>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    
+    <!-- Navigation links -->
+    <nav class="footer-nav">
+      <a href="#projects">Projects</a>
+      <span class="divider"></span>
+      <a href="/about.html">About</a>
+      <span class="divider"></span>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <!-- Social icons -->
+    <div class="footer-icons">
+      <a href="mailto:your@email.com" class="footer-btn">
+        <img src="./assets/IconMail.svg" alt="Email" width="24" height="24">
+      </a>
+      <a href="https://www.linkedin.com/in/your-handle" class="footer-btn" target="_blank" rel="noreferrer">
+        <img src="./assets/IconLinkedIn.svg" alt="LinkedIn" width="24" height="24">
+      </a>
+    </div>
+  </div>
+</footer>
+</html>

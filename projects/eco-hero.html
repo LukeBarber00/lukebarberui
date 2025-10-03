@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eco Hero — Luke Barber</title>
+  <link rel="icon" href="../assets/lb-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css" />
+  <script defer src="../theme.js"></script>
+</head>
+<body>
+
+  <!-- Header (same markup you already use) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="Luke Barber — Home">
+        <span class="brand-grid"><span>Luke</span><span>Barber</span></span>
+      </a>
+
+      <nav class="nav">
+        <a class="navlink" href="/#projects">Projects</a>
+        <a class="navlink" href="/about.html">About</a>
+        <a class="navlink" href="/contact.html">Contact</a>
+      </nav>
+
+      <button class="mode-toggle" aria-label="Toggle theme">
+        <span class="mode-box" aria-hidden="true"></span>
+        <img class="icon sun"  src="/assets/IconSun.png"  alt="">
+        <img class="icon moon" src="/assets/IconMoon.png" alt="">
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- Hero -->
+    <section class="hero-case">
+      <img class="hero-img" src="../assets/eco-hero-hero.png" alt="Eco Hero hero image">
+      <div class="hero-bar">
+        <a class="crumb-back" href="/#projects" aria-label="Back to Projects">
+          back
+        </a>
+        <h1 class="hero-title">Eco Hero</h1>
+      </div>
+    </section>
+
+    <!-- Meta cards -->
+    <section class="meta container">
+      <div class="meta-grid">
+        <article class="meta-card">
+          <header>Role</header>
+          <p>User Interface Designer</p>
+          <hr>
+          <p>Researcher</p>
+        </article>
+        <article class="meta-card">
+          <header>Tools</header>
+          <p>Figma</p>
+        </article>
+        <article class="meta-card">
+          <header>Deliverables</header>
+          <p>Consent Forms</p><hr>
+          <p>Personas</p><hr>
+          <p>Wireframe</p><hr>
+          <p>Prototype</p>
+        </article>
+        <article class="meta-card">
+          <header>Timeline</header>
+          <p>8 weeks</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="section section--filled container">
+      <div class="section-head"><h2>Project Overview</h2></div>
+      <div class="section-body">
+        <p>
+          Eco Hero is a mobile app concept designed to make recycling simple, engaging, and efficient.
+          Many users find recycling confusing and time-consuming, which discourages sustainable habits.
+          Eco Hero <strong>reduces friction by combining scanning technology, local recycling info, and
+          gamified rewards.</strong>
+        </p>
+
+        <div class="figure-wide">
+          <img src="../assets/eco-overview-1.png" alt="Eco Hero overview screen">
+        </div>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section class="section section--filled container">
+      <div class="section-head"><h2>Research</h2></div>
+      <div class="section-body">
+        <p>
+          We conducted interviews with students, parents, and KSU’s Director of Sustainability.
+          Findings revealed that local rules vary and are hard to find, contamination anxiety stops
+          people, motivation fades without rewards, and community accountability helps.
+        </p>
+
+        <div class="figure-wide">
+          <img src="../assets/eco-research-strip.png" alt="Research summary strip">
+        </div>
+      </div>
+    </section>
+
+<!-- ===== Eco Hero — Gallery (titles per image) ===== -->
+<section class="gallery" id="eco-gallery" aria-labelledby="eco-gallery-title">
+  <h3 id="eco-gallery-title" class="gallery-heading">Eco Hero Gallery</h3>
+
+  <div class="gallery-row">
+    <button class="gallery-nav prev" aria-label="Previous image"></button>
+
+    <div class="gallery-viewport" role="region" aria-roledescription="carousel">
+      <ul class="gallery-track" aria-live="polite">
+        <li class="gallery-slide is-active">
+          <header class="slide-head"><h4 class="slide-title">Affinity Map</h4></header>
+          <img src="/assets/eco-hero-gallery/eco-gal-1.png" alt="Affinity map board">
+        </li>
+        <li class="gallery-slide">
+          <header class="slide-head"><h4 class="slide-title">Persona</h4></header>
+          <img src="/assets/eco-hero-gallery/eco-gal-2.png" alt="Persona profile">
+        </li>
+        <li class="gallery-slide">
+          <header class="slide-head"><h4 class="slide-title">User Flow</h4></header>
+          <img src="/assets/eco-hero-gallery/eco-gal-3.png" alt="User flow diagram">
+        </li>
+        <li class="gallery-slide">
+          <header class="slide-head"><h4 class="slide-title">Wireframes</h4></header>
+          <img src="/assets/eco-hero-gallery/eco-gal-4.png" alt="Wireframe screens">
+        </li>
+        <li class="gallery-slide">
+          <header class="slide-head"><h4 class="slide-title">Prototype</h4></header>
+          <img src="/assets/eco-hero-gallery/eco-gal-5.png" alt="Prototype preview">
+        </li>
+        <li class="gallery-slide">
+          <header class="slide-head"><h4 class="slide-title">Wireframes</h4></header>
+          <img src="/assets/eco-hero-gallery/eco-gal-6.png" alt="Wireframe screens">
+        </li>
+        <li class="gallery-slide">
+          <header class="slide-head"><h4 class="slide-title">Prototype</h4></header>
+          <img src="/assets/eco-hero-gallery/eco-gal-7.png" alt="Prototype preview">
+        </li>
+        <li class="gallery-slide">
+          <header class="slide-head"><h4 class="slide-title">Wireframes</h4></header>
+          <img src="/assets/eco-hero-gallery/eco-gal-8.png" alt="Wireframe screens">
+        </li>
+      </ul>
+    </div>
+
+    <button class="gallery-nav next" aria-label="Next image"></button>
+  </div>
+
+  <div class="gallery-dots" role="tablist" aria-label="Eco Hero gallery slides"></div>
+</section>
+
+
+<!-- Design -->
+<section class="section section--filled container">
+  <div class="section-head"><h2>Design</h2></div>
+  <div class="section-body">
+    <figure class="figure-wide">
+      <img src="../assets/eco-design-1.png" alt="Design preview">
+      <figcaption>
+        <a class="btn btn--dark" href="#" target="_blank" rel="noreferrer">View: Prototype</a>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+
+    <!-- Takeaway -->
+    <section class="section section--nofill container">
+      <div class="section-head section-head--border"><h2>Takeaway</h2></div>
+      <div class="section-body">
+        <p>
+          Working on Eco Hero taught me the importance of <strong>adaptability, collaboration,
+          and user empathy</strong> in the design process. The compressed summer timeline forced
+          us to prioritize effectively and still deliver a thoughtful, high-fidelity product.
+          I gained confidence turning <strong>messy feedback into actionable improvements</strong>
+          and advocating for solutions that <strong>balanced user needs with technical
+          feasibility</strong>. Good design can make sustainable habits more approachable—small
+          <strong>UX decisions</strong> can influence real-world behavior.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (reuse your footer) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-nav">
+        <a href="/#projects">Projects</a><span class="divider"></span>
+        <a href="/about.html">About</a><span class="divider"></span>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <div class="footer-icons">
+        <a href="mailto:your@email.com" class="footer-btn"><img src="../assets/IconMail.svg" alt="Email" width="24" height="24"></a>
+        <a href="https://www.linkedin.com/in/your-handle" class="footer-btn" target="_blank" rel="noreferrer"><img src="../assets/IconLinkedIn.svg" alt="LinkedIn" width="24" height="24"></a>
+      </div>
+    </div>
+  </footer>
+
+<script src="/eco-gallery.js" defer></script>
+  
+</body>
+</html>
