@@ -472,20 +472,23 @@ a{color:inherit;text-decoration:none}
 .hero-case{ position:relative; margin-top:32px; }
 .hero-case .hero-img{
   width:100%; height:auto; display:block; background:#000;
-  aspect-ratio: 1440 / 540; object-fit:cover;
+  aspect-ratio: 1440 / 400; object-fit:contain;
 }
-.hero-case .hero-bar{
-  position:relative;
+.hero-case .hero-bar {
+  position: relative;
   background: var(--Button-Color);
   color: var(--Button-Text-Color);
-  display:flex; align-items:center; gap:16px;
-  padding:16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 64px; /* ⬅ Added side padding */
 }
+
 .hero-title{
-  font:700 48px/1.1 "Segoe UI", sans-serif;
+  font:500 40px/1.1 "Segoe UI", sans-serif;
 }
-@media (min-width:900px){
-  .hero-title{ font-size:96px; }
+@media (min-width:px){
+  .hero-title{ font-size:72px; }
 }
 
 /* breadcrumb */
@@ -527,13 +530,15 @@ a{color:inherit;text-decoration:none}
 }
 
 /* ===== Sections ===== */
-.section{ margin-block:56px; box-shadow:0 2px 4px rgba(38,38,38,.25); border-radius:16px; overflow:hidden; }
-.section-head{ display:grid; place-items:center; height:93px; background:var(--Mode-Section-Header); }
-.section-head h2{ margin:0; font:700 48px/1 "Segoe UI",sans-serif; }
-@media (min-width:900px){ .section-head h2{ font-size:64px; } }
+.section{ margin-block:88px; box-shadow:0 2px 4px rgba(38,38,38,.25); border-radius:16px; overflow:hidden; }
+.section-head{ display:grid; place-items:center; height:96px; background:var(--Mode-Section-Header); }
+.section-head h2{ margin:0; font:600 40px/1 "Segoe UI",sans-serif; }
+@media (min-width:900px){ .section-head h2{ font-size:48px; } }
 .section-head--border{ background:none; border-bottom:1px solid var(--Dash-Color); }
+/* Let section headers go edge-to-edge even when section also has .container */
+.section.container { padding-left: 0; padding-right: 0; }
 
-.section-body{ padding:32px; background:var(--Mode-Section-Main); }
+.section-body{ padding:40px; background:var(--Mode-Section-Main); }
 .section--nofill .section-body{ background:var(--Content-Box-Color); }
 .section--boxed { background: var(--Box-Color); }
 .section--boxed .section-body{ background:transparent; }
@@ -551,7 +556,14 @@ a{color:inherit;text-decoration:none}
 .btn--dark{ background:var(--Button-Color); color:var(--Button-Text-Color); }
 
 /* Pills */
-.pill-row{ display:flex; gap:56px; flex-wrap:wrap; align-items:center; }
+.pill-row {
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+  align-items: center;       /* vertical alignment */
+  justify-content: center;   /* horizontal centering ✅ */
+}
+
 .pill{
   display:flex; align-items:center; gap:16px;
   font:400 25px/36px "Segoe UI",sans-serif;
@@ -642,11 +654,16 @@ a{color:inherit;text-decoration:none}
 }
 
 /* Row with arrows + viewport */
+/* shrink-wrap the row around the viewport and center it */
 .gallery-row{
   display: grid;
-  grid-template-columns: 64px 1fr 64px;
+  grid-template-columns: auto max-content auto; /* arrows + viewport */
   gap: 16px;
   align-items: center;
+  width: max-content;          /* shrink to content */
+  margin-inline: auto;         /* center the whole row */
+  padding-inline: 8px;         /* tiny breathing room */
+  justify-self: center;        /* if parent is grid, keep centered */
 }
 
 /* Arrow buttons */
@@ -699,10 +716,13 @@ a{color:inherit;text-decoration:none}
 #eco-gallery { --gallery-height: 520px; }
 
 /* Viewport is fixed-height */
-.gallery-viewport{
+/* give the viewport an explicit, responsive width */
+#eco-gallery .gallery-viewport{
+  width: clamp(320px, 85vw, 980px);   /* pick max to taste */
   height: var(--gallery-height);
   overflow: hidden;
   border-radius: 16px;
+  margin: 0 auto;                     /* safe centering */
 }
 
 /* Use FLEX for the track – simpler and reliable */
