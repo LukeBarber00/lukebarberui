@@ -4,33 +4,46 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Foco Fresh — Luke Barber</title>
-  <link rel="icon" href="../assets/lb-logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css" />
-  <script defer src="../theme.js"></script>
+
+  <!-- root-relative paths -->
+  <link rel="icon" href="/assets/lb-logo.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/lb-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/lb-192.png">
+  <link rel="stylesheet" href="/styles.css" />
+  <script defer src="/theme.js"></script>
 </head>
+
 <body>
 
-  <!-- Header (same markup you already use) -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="/" class="brand" aria-label="Luke Barber — Home">
-        <span class="brand-grid"><span>Luke</span><span>Barber</span></span>
-      </a>
+<!-- ===== Header (1:1) ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="Luke Barber — Home">
+      <span class="brand-grid"><span>Luke</span><span>Barber</span></span>
+    </a>
 
-      <nav class="nav">
-        <a class="navlink" href="/#projects">Projects</a>
-        <a class="navlink" href="/about.html">About</a>
-        <a class="navlink" href="/contact.html">Contact</a>
-      </nav>
+    <!-- NEW: mobile hamburger -->
+    <button class="nav-toggle" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
 
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a class="navlink" href="/#projects">Projects</a>
+      <a class="navlink" href="/about.html">About</a>
+      <a class="navlink" href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="mode-toggle" aria-label="Color mode">
       <button class="mode-toggle" aria-label="Toggle theme">
         <span class="mode-box" aria-hidden="true"></span>
-        <img class="icon sun"  src="/assets/IconSun.png"  alt="">
-        <img class="icon moon" src="/assets/IconMoon.png" alt="">
+        <img src="assets/IconSun.png"  class="icon sun"  alt="">
+        <img src="assets/IconMoon.png" class="icon moon" alt="">
       </button>
-
     </div>
-  </header>
+  </div>
+</header>
 
   <main class="page">
 
