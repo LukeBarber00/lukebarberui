@@ -1034,3 +1034,8 @@ p, ul, ol{
   .content-box,
   .section{ padding:16px; }
 }
+
+@media (max-width: 480px){
+  h1{ font-size:1.75rem; }
+  h2{ font-size:1.5rem; }
+}
