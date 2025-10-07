@@ -443,9 +443,30 @@ img, svg, video, canvas{ max-width:100%; height:auto; display:block; }
 .section--boxed .section-body{ background:transparent; }
 
 /* Figures / buttons */
-.figure-narrow, .figure-wide{ display:grid; gap:16px; justify-items:center; }
-.figure-narrow img{ max-width:346px; border-radius:12px; }
-.figure-wide img{ width:100%; border-radius:16px; }
+/* ---- Figure fixes ---- */
+.figure-narrow{
+  display:grid;
+  gap:16px;
+  justify-items:center;
+  margin-inline:auto;        /* truly centers the figure itself */
+  width:100%;                /* make sure the grid spans its container */
+  max-width:100%;            /* prevents subtle horizontal drift */
+}
+
+.figure-narrow img{
+  display:block;              /* removes inline-image whitespace */
+  max-width:min(346px, 100%); /* responsive clamp */
+  width:100%;                 /* shrink gracefully on small screens */
+  height:auto;
+  border-radius:12px;
+  margin-inline:auto;         /* ensure it’s visually centered in its own grid cell */
+}
+
+/* optional safeguard for extra small screens */
+@media (max-width:480px){
+  .figure-narrow{ padding-inline:8px; } /* tiny breathing room */
+}
+
 
 .btn{
   display:inline-block; padding:8px 16px; border-radius:4px;
@@ -552,17 +573,17 @@ img, svg, video, canvas{ max-width:100%; height:auto; display:block; }
   text-align: center;
 }
 
-/* Row with arrows + viewport */
-/* shrink-wrap the row around the viewport and center it */
+/* Row: never wider than the screen */
 .gallery-row{
-  display: grid;
-  grid-template-columns: auto max-content auto; /* arrows + viewport */
-  gap: 16px;
-  align-items: center;
-  width: max-content;          /* shrink to content */
-  margin-inline: auto;         /* center the whole row */
-  padding-inline: 8px;         /* tiny breathing room */
-  justify-self: center;        /* if parent is grid, keep centered */
+  display:grid;
+  grid-template-columns: auto minmax(0,1fr) auto; /* arrows | viewport | arrows */
+  gap:16px;
+  align-items:center;
+  width:100%;                 /* <-- key: fit the viewport width */
+  max-width:980px;            /* desktop cap */
+  margin-inline:auto;
+  padding-inline:8px;
+  overflow-x:clip;            /* prevent stray sideways scroll from arrows */
 }
 
 /* Arrow buttons */
@@ -614,14 +635,16 @@ img, svg, video, canvas{ max-width:100%; height:auto; display:block; }
 /* Fixed height for this gallery */
 #eco-gallery { --gallery-height: 520px; }
 
-/* Viewport is fixed-height */
-/* give the viewport an explicit, responsive width */
+/* Viewport: fills available column, scales responsively */
+#eco-gallery { --gallery-height: clamp(220px, 56vw, 520px); } /* 220–520px based on width */
+
 #eco-gallery .gallery-viewport{
-  width: clamp(320px, 85vw, 980px);   /* pick max to taste */
+  width:100%;                 /* fill the middle column */
   height: var(--gallery-height);
-  overflow: hidden;
-  border-radius: 16px;
-  margin: 0 auto;                     /* safe centering */
+  max-height: 72vh;           /* don’t exceed screen height */
+  overflow:hidden;
+  border-radius:16px;
+  margin:0;                   /* row already centers everything */
 }
 
 /* Use FLEX for the track – simpler and reliable */
