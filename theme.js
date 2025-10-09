@@ -131,6 +131,81 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && nav && nav.classList.contains('is-open')) closeMenu();
   });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks   = document.querySelectorAll('.navlink');
+  const brand      = document.querySelector('.brand');       // <a class="brand">
+  const brandGrid  = document.querySelector('.brand-grid');  // <span class="brand-grid">
+  const currentPath = window.location.pathname;
+  const isHome = currentPath === '/' || currentPath.endsWith('/index.html') || currentPath === '/index.html';
+
+  // 1) Home page: highlight brand only
+  if (isHome) {
+    brand?.classList.add('active');
+    brandGrid?.classList.add('active');
+  }
+
+  // 2) Non-home pages: highlight the matching nav link
+  navLinks.forEach(link => {
+    const url = new URL(link.getAttribute('href'), location.origin);
+    const linkPath = url.pathname;
+    const linkHash = url.hash;
+
+    // Skip "Projects" on home (/#projects)
+    if (isHome && linkHash === '#projects') return;
+
+    if (!isHome && linkPath === currentPath) {
+      link.classList.add('active');
+    }
+  });
+});
+
+// Back to top button
+const backToTop = document.querySelector('.back-to-top');
+
+if (backToTop) {
+  const toggle = () => {
+    if (window.scrollY > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  };
+
+  // Show correct state on load & when scrolling (passive for perf)
+  toggle();
+  window.addEventListener('scroll', toggle, { passive: true });
+
+  // --- Custom smooth scroll animation ---
+  function scrollToTop(duration = 300) {
+    // Respect reduced motion
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    const startY = window.scrollY || window.pageYOffset;
+    const startT = performance.now();
+    const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+    function step(now) {
+      const t = Math.min(1, (now - startT) / duration);
+      const y = Math.round(startY * (1 - easeOutCubic(t)));
+      window.scrollTo(0, y);
+      if (t < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  // Trigger scroll animation on click
+  backToTop.addEventListener('click', e => {
+    e.preventDefault();
+    scrollToTop(600); // adjust duration (ms) to control speed
+  });
+}
+
+
 })();
 
 
