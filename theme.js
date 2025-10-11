@@ -165,7 +165,7 @@ const backToTop = document.querySelector('.back-to-top');
 
 if (backToTop) {
   const toggle = () => {
-    if (window.scrollY > 300) {
+    if (window.scrollY > 400) {
       backToTop.classList.add('visible');
     } else {
       backToTop.classList.remove('visible');
@@ -176,8 +176,8 @@ if (backToTop) {
   toggle();
   window.addEventListener('scroll', toggle, { passive: true });
 
-  // --- Custom smooth scroll animation ---
-  function scrollToTop(duration = 300) {
+  // --- Custom smooth scroll animation (ease-in) ---
+  function scrollToTop(duration = 200) {
     // Respect reduced motion
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.scrollTo(0, 0);
@@ -186,11 +186,11 @@ if (backToTop) {
 
     const startY = window.scrollY || window.pageYOffset;
     const startT = performance.now();
-    const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+    const easeInCubic = t => t * t * t; // slow start → fast finish
 
     function step(now) {
       const t = Math.min(1, (now - startT) / duration);
-      const y = Math.round(startY * (1 - easeOutCubic(t)));
+      const y = Math.round(startY * (1 - easeInCubic(t)));
       window.scrollTo(0, y);
       if (t < 1) requestAnimationFrame(step);
     }
@@ -201,7 +201,7 @@ if (backToTop) {
   // Trigger scroll animation on click
   backToTop.addEventListener('click', e => {
     e.preventDefault();
-    scrollToTop(600); // adjust duration (ms) to control speed
+    scrollToTop(200); // adjust duration (ms) for speed
   });
 }
 
