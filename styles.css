@@ -1234,8 +1234,8 @@ p, ul, ol{
 .back-to-top {
   position: fixed;
   bottom: calc(40px + env(safe-area-inset-bottom, 0px));
-  left: 50%;
-  transform: translateX(-50%) translateY(80px);
+  right: 40px; /* <-- changed from left: 50% to right: 40px */
+  transform: translateY(80px); /* <-- removed translateX(-50%) */
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -1304,7 +1304,12 @@ p, ul, ol{
 
 /* Mobile size */
 @media (max-width: 768px) {
-  .back-to-top { width: 48px; height: 48px; bottom: calc(32px + env(safe-area-inset-bottom, 0px)); }
+  .back-to-top {
+    width: 48px;
+    height: 48px;
+    bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+    right: 32px; /* <-- add right positioning on mobile too */
+  }
 }
 
 /* Smooth anchors + reduced motion (keep) */
@@ -1315,3 +1320,24 @@ html { scroll-behavior: smooth; }
 }
 
 
+/* ---------- Simple mobile header spacing ---------- */
+@media (max-width: 768px) {
+  .brand-grid {
+    display: flex;
+    gap: 6px;                /* tighter Luke–Barber spacing */
+    width: auto;             /* shrink to fit */
+  }
+
+  .nav-toggle {
+    margin-left: auto;       /* push hamburger right */
+  }
+
+  .mode-toggle {
+    margin-left: 10px;       /* small gap between menu + moon */
+  }
+
+  .header-inner {
+    padding-inline: 16px;    /* even left/right breathing room */
+    align-items: center;     /* keep everything aligned */
+  }
+}
