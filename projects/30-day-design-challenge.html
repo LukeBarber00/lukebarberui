@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>30-Day Design Challenge — Luke Barber</title>
+
+  <!-- root-relative paths -->
+  <link rel="icon" href="/assets/lb-logo.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/lb-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/lb-192.png">
+  <link rel="stylesheet" href="/styles.css" />
+  <script defer src="/theme.js"></script>
+</head>
+
+<body>
+<!-- ===== Header (1:1) ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="Luke Barber — Home">
+      <span class="brand-grid"><span>Luke</span><span>Barber</span></span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a class="navlink" href="/#projects">Projects</a>
+      <a class="navlink" href="/about.html">About</a>
+      <a class="navlink" href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="mode-toggle" aria-label="Color mode">
+      <button class="mode-toggle" aria-label="Toggle theme">
+        <span class="mode-box" aria-hidden="true"></span>
+        <img src="/assets/IconSun.png"  class="icon sun"  alt="">
+        <img src="/assets/IconMoon.png" class="icon moon" alt="">
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- Hero -->
+  <section class="hero-case">
+    <img class="hero-img" src="/assets/30-day-challenge-hero.png" alt="30-Day Design Challenge hero image">
+    <div class="hero-bar">
+      <a class="crumb-back" href="/#projects" aria-label="Back to Projects">back</a>
+      <h1 class="hero-title">30-Day Design Challenge</h1>
+    </div>
+  </section>
+
+  <!-- Meta cards (matches Eco Hero) -->
+  <section class="meta container">
+    <div class="meta-grid">
+      <article class="meta-card">
+        <header>Focus</header>
+        <p>UI Clarity</p><hr>
+        <p>Constraints</p><hr>
+        <p>Iteration</p>
+      </article>
+      <article class="meta-card">
+        <header>Tools</header>
+        <p>Figma/Figma Make</p><hr>
+        <p>Sharpen.design</p>
+      </article>
+      <article class="meta-card">
+        <header>Output</header>
+        <p>Daily concepts</p><hr>
+        <p>Rapid explorations</p><hr>
+        <p>Sharpened decision-making</p>
+      </article>
+      <article class="meta-card">
+        <header>Timeline</header>
+        <p>30 days</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Project Overview -->
+  <section class="section section--filled container">
+    <div class="section-head"><h2>Project Overview</h2></div>
+    <div class="section-body">
+      <p>
+        This challenge is a self-initiated series of daily UI/UX explorations built to keep momentum,
+        practice fast problem framing, and ship clean outcomes under time constraints. Each entry focuses
+        on one small problem and prioritizes clarity over complexity.
+      </p>
+
+      <div class="figure-wide">
+        <img src="/assets/challenge/challenge-strip.png" alt="A strip preview of multiple challenge designs">
+      </div>
+    </div>
+  </section>
+
+  <!-- How I approached it -->
+  <section class="section section--filled container">
+    <div class="section-head"><h2>Approach</h2></div>
+    <div class="section-body">
+      <p>
+        Each day follows the same structure: define the user/job-to-be-done, pick one constraint
+        (screen count, time limit, accessibility goal, or platform), and ship one polished concept.
+        The point is consistency and decision-making—not perfect final products.
+      </p>
+
+      <div class="challenge-meta" aria-label="Challenge principles">
+        <span class="chip">One problem</span>
+        <span class="chip">One constraint</span>
+        <span class="chip">Ship daily</span>
+        <span class="chip">Clarity first</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Challenge Grid -->
+  <section class="section section--filled container">
+    <div class="section-head"><h2>Days</h2></div>
+    <div class="section-body">
+
+      <div class="challenge-grid">
+
+        <!-- DAY TEMPLATE (duplicate this block) -->
+        <article class="challenge-item">
+          <img class="challenge-thumb" src="/assets/challenge/day-01.png" alt="Day 1 design thumbnail">
+          <div class="challenge-body">
+            <h3 class="challenge-title">Day 1: AI Chatbot for AP</h3>
+            <p class="challenge-desc">Conversational news discovery interface.</p>
+            <div class="challenge-meta">
+              <span class="chip">UI</span>
+              <span class="chip">Concept</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="challenge-item">
+          <img class="challenge-thumb" src="/assets/challenge/day-02.png" alt="Day 2 design thumbnail">
+          <div class="challenge-body">
+            <h3 class="challenge-title">Day 2: Settings Dialog for Toy Co.</h3>
+            <p class="challenge-desc">Child-safe configuration interface.</p>
+            <div class="challenge-meta">
+              <span class="chip">UX</span>
+              <span class="chip">Accessibility</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="challenge-item">
+          <img class="challenge-thumb" src="/assets/challenge/day-03.png" alt="Day 3 design thumbnail">
+          <div class="challenge-body">
+            <h3 class="challenge-title">Day 3: Water/Wastewater Treatment Dashboard</h3>
+            <p class="challenge-desc">Real-time municipal infrastructure monitoring.</p>
+            <div class="challenge-meta">
+              <span class="chip">UI</span>
+              <span class="chip">Mobile</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- add more days here -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Takeaway (matches your pattern) -->
+  <section class="section section--nofill container">
+    <div class="section-head section-head--border"><h2>Takeaway</h2></div>
+    <div class="section-body">
+      <p>
+        This challenge strengthened my ability to scope quickly, make clear UI decisions under constraints,
+        and ship consistently. Repetition made patterns obvious—what users struggle with, where friction hides,
+        and which changes create immediate clarity.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<button class="back-to-top" aria-label="Back to top">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="19" x2="12" y2="5"></line>
+    <polyline points="5 12 12 5 19 12"></polyline>
+  </svg>
+</button>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-icons">
+      <a href="mailto:luke.barber00@gmail.com" class="footer-btn">
+        <img src="/assets/IconMail.svg" alt="Email" width="24" height="24">
+      </a>
+      <a href="https://www.linkedin.com/in/luke-barber-05478a170" class="footer-btn" target="_blank" rel="noreferrer">
+        <img src="/assets/IconLinkedIn.svg" alt="LinkedIn" width="24" height="24">
+      </a>
+    </div>
+
+    <nav class="footer-nav">
+      <a href="/#projects">Projects</a>
+      <span class="divider"></span>
+      <a href="/about.html">About</a>
+      <span class="divider"></span>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+  </div>
+</footer>
+
+</body>
+</html>
+
+
+

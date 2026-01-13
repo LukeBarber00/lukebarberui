@@ -855,11 +855,11 @@ html { scroll-behavior: smooth; }
   padding-inline:16px;            /* prevent title from hugging edges on small screens */
 }
 
-.projects-title{
-  font-size: clamp(28px, 4vw, 64px);
-  line-height:1.1;
-  margin:0;
-  text-align:center;
+.projects-title {
+  font-size: clamp(18px, 2vw, 32px);
+  line-height: 1.1;
+  margin: 0;
+  text-align: center;
 }
 
 /* gap between ribbon and the cards grid */
@@ -943,18 +943,47 @@ html { scroll-behavior: smooth; }
   padding-bottom: 72px;
 }
 
+/* ===== CHIP TOKENS ===== */
+
+/* ===== CHIP (PROJECT CARDS ONLY) ===== */
+
+.card .chip {
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+}
+
+/* Light mode (default) */
+:root {
+  --chip-bg: rgba(0, 0, 0, 0.06);
+  --chip-border: rgba(0, 0, 0, 0.18);
+  --chip-text: #1f1f1f; /* WCAG-safe on light backgrounds */
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --chip-bg: rgba(255, 255, 255, 0.04);
+  --chip-border: rgba(255, 255, 255, 0.14);
+  --chip-text: #F4EFE4;
+}
+
+/* ===== CHIP COMPONENT ===== */
 .chip{
   display: inline-flex;
   align-items: center;
   justify-content: center;
   align-self: flex-start;
+
   padding: 6px 12px;
-  border: 1px solid currentColor;
   border-radius: 999px;
-  font-size: 10px;
+
+  font-size: 12px;
   font-family: "Segoe UI", sans-serif;
   font-weight: 700;
-  color: var(--Card-Text-Color, #F4EFE4);
+
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  border: 1px solid var(--chip-border);
 }
 
 .card-desc{
@@ -1340,4 +1369,229 @@ html { scroll-behavior: smooth; }
     padding-inline: 16px;    /* even left/right breathing room */
     align-items: center;     /* keep everything aligned */
   }
+}
+
+.projects-ribbon .projects-title {
+  font-size: clamp(22px, 2.5vw, 40px) !important;
+  line-height: 1.1;
+  margin: 0;
+  text-align: center;
+}
+
+
+/* ===== At a Glance ===== */
+.glance {
+  padding-block: 32px;
+}
+
+/* Title matches your ribbon style but scaled down a touch */
+.glance .section-title {
+  font-size: clamp(22px, 2.4vw, 36px);
+  line-height: 1.15;
+  margin: 0 0 16px 0;
+  text-align: left;
+}
+
+/* Responsive grid */
+.glance-grid {
+  --gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.glance-item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.08);
+  transform: translateY(0);
+  transition: transform 160ms ease, box-shadow 160ms ease, outline 160ms ease;
+}
+
+.glance-item:focus-visible {
+  outline: 2px solid var(--Dash-Color, #4c9aff);
+  outline-offset: 2px;
+}
+
+.glance-item img {
+  display: block;
+  width: 100%;
+  height: 180px;               /* uniform cards */
+  object-fit: cover;           /* crop nicely */
+  background: var(--Mode-Section-Header, #f5f5f5);
+}
+
+/* Subtle “float” effect */
+@media (hover:hover) and (pointer:fine) {
+  .glance-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.10);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .glance-item {
+    transition: none;
+  }
+}
+
+/* ===== Lightbox ===== */
+.glance-lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;             /* toggled via JS */
+  z-index: 1000;
+}
+
+.glance-lightbox[aria-hidden="false"] {
+  display: grid;
+  place-items: center;
+}
+
+.glance-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.glance-lightbox__panel {
+  position: relative;
+  max-width: min(92vw, 1200px);
+  max-height: 88vh;
+  width: auto;
+  border-radius: 12px;
+  background: var(--Mode-Background, #fff);
+  padding: 12px;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.35);
+  display: grid;
+  grid-template-areas:
+    "close close"
+    "figure figure"
+    "prev next";
+  gap: 10px;
+}
+
+.glance-lightbox__close {
+  grid-area: close;
+  justify-self: end;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--Mode-FG, #111);
+}
+
+.glance-lightbox__figure {
+  grid-area: figure;
+  margin: 0;
+}
+
+.glance-lightbox__img {
+  display: block;
+  max-width: 100%;
+  max-height: 72vh;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+}
+
+.glance-lightbox__caption {
+  font-size: 14px;
+  margin-top: 8px;
+  color: var(--Mode-FG-Subtle, #666);
+}
+
+.glance-lightbox__nav {
+  background: var(--Mode-Section-Header, #f2f2f2);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.glance-lightbox__prev { grid-area: prev; justify-self: start; }
+.glance-lightbox__next { grid-area: next; justify-self: end; }
+
+/* Mobile tweaks */
+@media (max-width: 640px) {
+  .glance .section-title { text-align: center; }
+  .glance-lightbox__panel {
+    width: 94vw;
+    padding: 10px;
+    grid-template-areas:
+      "close"
+      "figure"
+      "prev"
+      "next";
+    justify-items: center;
+  }
+  .glance-lightbox__nav { width: 100%; }
+}
+
+/* ===== 30-Day Challenge Cards ===== */
+
+.challenge-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.challenge-item{
+  background: var(--surface-color, #fff);
+  border-radius: 18px;
+  overflow: hidden;
+
+  border: 1px solid rgba(0,0,0,0.08);
+  display: grid;
+  grid-template-rows: 170px 1fr;
+}
+
+[data-theme="dark"] .challenge-item{
+  border-color: rgba(255,255,255,0.08);
+}
+
+.challenge-thumb{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.challenge-body{
+  padding: 1rem;
+  display: grid;
+  gap: .5rem;
+}
+
+.challenge-title{
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.challenge-desc{
+  margin: 0;
+  opacity: .9;
+  font-size: .95rem;
+  line-height: 1.45;
+}
+
+.challenge-meta{
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
 }
