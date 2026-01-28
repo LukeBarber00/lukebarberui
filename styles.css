@@ -1549,7 +1549,7 @@ html { scroll-behavior: smooth; }
 }
 
 .challenge-item{
-  background: var(--surface-color, #fff);
+  background: var(--surface-color, #fafafa);
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(0,0,0,0.08);
