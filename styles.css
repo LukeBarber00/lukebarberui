@@ -285,16 +285,6 @@ a{color:inherit;text-decoration:none}
   shape-rendering: geometricPrecision;
 }
 
-.logo-wrap::after{
-  content:"";
-  position:absolute; inset:auto 0 -6px 0;   /* under the logo */
-  height:14px;
-  border-radius:999px;
-  background: radial-gradient(50% 120% at 50% 0%,
-              rgba(242,93,0,.25), transparent 70%);
-  opacity:.9;                                /* tweak to taste */  
-}
-
 .hero-title{
   font-size: clamp(32px, 8vw, 64px);
   line-height:1.15;
